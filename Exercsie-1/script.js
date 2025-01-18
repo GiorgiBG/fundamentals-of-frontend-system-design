@@ -1,14 +1,6 @@
-'use strict'
-const container = document.getElementById('container');
-const html = `<article class="card">
-<h3 class="card__title"></h3>
-<div class="card__body">
-  <div class='card__body__image'></div>
-  <section class='card__body__content'>
-  </section>
-</div>
-</article>`;
 
+const container = document.getElementById('container');
+const template = document.getElementById('card__template')
 /**
  * @param {string} title
  * @param {string} body
@@ -17,11 +9,13 @@ const html = `<article class="card">
  */
 function createCardComponent(title, body) {
     // @todo - Implement function
-}
+    const card = template.content.cloneNode(true).firstElementChild;
+    const [cardTitle, cardBody] = card.querySelectorAll('.card__title, .card__body__content');
 
-const component = createCardComponent(
-    "Frontend System Design: Fundamentals",
-    "This is a random body text"
-);
+    cardTitle.textContent = title;
+    cardBody.textContent = body;
+    console.log(card)
+    return card
 
-container.appendChild(component);
+} 
+container.appendChild(createCardComponent('ForntendMaster', 'Frotnend'))
